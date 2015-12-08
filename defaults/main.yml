@@ -1,6 +1,6 @@
 ---
 release: 5.6
-default_php_packages:
+php_packages:
   - gcc-c++
   - make
   - php
@@ -13,5 +13,5 @@ default_php_packages:
   - php-pear
   - php-redis
 
-default_pecl_packages:
+pecl_packages:
   - timezonedb

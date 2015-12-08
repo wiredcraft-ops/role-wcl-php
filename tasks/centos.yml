@@ -19,11 +19,11 @@
   yum:
     name={{ item }}
     state=present
-  with_items: default_php_packages
+  with_items: php_packages
 
 - name: Install pecl packages
   shell: pecl install {{ item }}
-  with_items: default_pecl_packages
+  with_items: pecl_packages
   ignore_errors: yes
 
 - name: Add corresponding config in php.d with line extension={{ item }}.so
@@ -31,3 +31,4 @@
     dest=/etc/php.d/{{ item }}.ini
     option=extension
     value={{ item }}.so
+  with_items: pecl_packages

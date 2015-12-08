@@ -6,8 +6,9 @@ Install PHP 5.6 for CentOS and Ubuntu, (Ubuntu is not supported currently.)
 Role Variables
 --------------
 
-default_php_packages
-default_pecl_packages
+php_packages
+pecl_packages
+release
 
 Example Playbook
 ----------------
