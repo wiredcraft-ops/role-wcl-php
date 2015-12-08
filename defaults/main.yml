@@ -1,0 +1,16 @@
+---
+default_php_packages:
+  - gcc-c++
+  - make
+  - php
+  - php-devel
+  - php-cli
+  - php-gd
+  - php-mcrypt
+  - php-fpm
+  - php-mbstring
+  - php-pear
+  - php-redis
+
+default_pecl_packages:
+  - timezonedb
