@@ -29,6 +29,5 @@
 - name: Add corresponding config in php.d with line extension={{ item }}.so
   ini_file:
     dest=/etc/php.d/{{ item }}.ini
-    # section=PHP
     option=extension
     value={{ item }}.so

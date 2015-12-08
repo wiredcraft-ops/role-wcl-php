@@ -3,6 +3,6 @@
   include: debian.yml
   when: ansible_os_family == 'Debian' and release == 5.6
 
-- name: Install in CentOS.
+- name: Install in RedHat / CentOS.
   include: centos.yml
-  when: ansible_os_family == 'CentOS' and release == 5.6
+  when: ansible_os_family == 'RedHat' and release == 5.6
