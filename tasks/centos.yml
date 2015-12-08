@@ -26,9 +26,10 @@
   with_items: pecl_packages
   ignore_errors: yes
 
-- name: Add corresponding config in php.d with line extension={{ item }}.so
-  ini_file:
+- name: Add corresponding config in php.d
+  copy:
     dest=/etc/php.d/{{ item }}.ini
-    option=extension
-    value={{ item }}.so
+    content="extension={{ item }}.so"
+    owner=root
+    owner=root
   with_items: pecl_packages
