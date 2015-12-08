@@ -1,8 +1,8 @@
 ---
 - name: Install in Debian.
   include: debian.yml
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and release == 5.6
 
 - name: Install in CentOS.
   include: centos.yml
-  when: ansible_os_family == 'CentOS'
+  when: ansible_os_family == 'CentOS' and release == 5.6
