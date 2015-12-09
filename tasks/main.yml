@@ -6,3 +6,7 @@
 - name: Install in RedHat / CentOS.
   include: centos.yml
   when: ansible_os_family == 'RedHat' and release == 5.6
+
+- name: Install composer.phar
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+  when: install_composer

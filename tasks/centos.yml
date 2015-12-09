@@ -33,7 +33,3 @@
     owner=root
     owner=root
   with_items: pecl_packages
-
-- name: Install composer.phar
-  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-  when: install_composer
