@@ -1,12 +1,15 @@
 ---
 - name: Install in Debian.
   include: debian.yml
-  when: ansible_os_family == 'Debian' and release == 5.6
+  when: ansible_os_family == 'Debian'
 
 - name: Install in RedHat / CentOS.
   include: centos.yml
-  when: ansible_os_family == 'RedHat' and release == 5.6
+  when: ansible_os_family == 'RedHat'
 
-- name: Install composer.phar
-  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+- name: install composer
+  shell: 
+    chdir=/usr/local/bin
+    creates=/usr/local/bin/composer.phar
+    curl -sS https://getcomposer.org/installer | php -d allow_url_fopen=On --filename=composer
   when: install_composer

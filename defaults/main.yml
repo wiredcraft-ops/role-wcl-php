@@ -6,18 +6,12 @@ php_packages:
   - php
   - php-devel
   - php-cli
-  - php-gd
-  - php-mcrypt
-  - php-fpm
-  - php-mbstring
   - php-pear
-  - php-redis
 
-pecl_packages:
-  - timezonedb
+pecl_packages: []
 
 remi_rpms: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 remi_section: remi_php56
 remi_repo_file: /etc/yum.repos.d/remi.repo
 
-install_composer: yes
+install_composer: false

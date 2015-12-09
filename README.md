@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Install PHP 5.6 for CentOS and Ubuntu, (Ubuntu is not supported currently.)
+Install PHP for CentOS and Ubuntu, (Ubuntu is not supported currently.)
 
 Role Variables
 --------------

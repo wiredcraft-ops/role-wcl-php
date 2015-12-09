@@ -2,18 +2,21 @@
   yum:
     name=epel-release
     state=present
+  when: release == 5.6
 
 - name: Enable remi-php56 repository
   yum:
     name={{ remi_rpms }}
     state=present
+  when: release == 5.6
 
-- name: Edit /etc/yum.repos.d/remi.repo
+- name: Enable Remi repository
   ini_file:
     dest={{ remi_repo_file }}
     section={{ remi_section }}
     option=enabled
     value=1
+  when: release == 5.6
 
 - name: Install required packages
   yum:
