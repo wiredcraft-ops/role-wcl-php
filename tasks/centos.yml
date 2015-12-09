@@ -34,5 +34,5 @@
     dest=/etc/php.d/{{ item }}.ini
     content="extension={{ item }}.so"
     owner=root
-    owner=root
+    group=root
   with_items: pecl_packages
