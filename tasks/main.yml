@@ -10,6 +10,6 @@
 - name: install composer
   shell: 
     chdir=/usr/local/bin
-    creates=/usr/local/bin/composer.phar
+    creates=/usr/local/bin/composer
     curl -sS https://getcomposer.org/installer | php -d allow_url_fopen=On --filename=composer
   when: install_composer
