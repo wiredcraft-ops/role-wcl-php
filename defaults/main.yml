@@ -10,8 +10,7 @@ php_packages:
 
 pecl_packages: []
 
-remi_rpms: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+remi_repo: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 remi_section: remi-php56
-remi_repo_file: /etc/yum.repos.d/remi.repo
 
 install_composer: false
