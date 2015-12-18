@@ -18,7 +18,9 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: servers
       roles:
          - role: wcl-php
-           release: 5.5
+           release: '5.5'
+
+**Note**: `release` value need to be quoted to be seen as a string instead of a float.
 
 License
 -------
