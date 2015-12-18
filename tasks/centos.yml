@@ -1,23 +1,69 @@
+---
+#
+# Setup REMI repo 
+#
+
+# Epel is a dependency
 - name: Add epel-release
   yum:
     name=epel-release
     state=present
-  when: release == 5.6
 
-- name: Enable remi-php56 repository
-  yum:
+# Select remi repo depending on the CentOS version
+- name: yum | Set remi repo var (rhel7)
+  set_fact:
+    remi_repo={{ remi_repo_el7 }}
+  when: 
+    ansible_distribution_major_version == '7'
+
+- name: yum | Set remi repo var (rhel6)
+  set_fact:
+    remi_repo={{ remi_repo_el6 }}
+  when: 
+    ansible_distribution_major_version == '6'
+
+- name: yum | Set remi repo var (rhel5)
+  set_fact:
+    remi_repo={{ remi_repo_el5 }}
+  when: 
+    ansible_distribution_major_version == '5'
+
+# Install Remi Repo
+- name: yum | Setup remi repo
+  yum: 
     name={{ remi_repo }}
     state=present
-  when: release == 5.6
 
+
+#
+# Activate PHP section depending on the release
+#
+
+# Select the php section
+- name: yum | Set remi repo php section var
+  set_fact:
+    remi_section=remi-php55
+  when: 
+    release == '5.5'
+
+- name: yum | Set remi repo php section var
+  set_fact:
+    remi_section=remi-php56
+  when: 
+    release == '5.6'
+
+# Enable Section in remi.repo
 - name: Enable Remi repository
   ini_file:
     dest=/etc/yum.repos.d/remi.repo
     section={{ remi_section }}
     option=enabled
     value=1
-  when: release == 5.6
 
+
+#
+# Install PHP
+#
 - name: Install required packages
   yum:
     name={{ item }}
