@@ -14,8 +14,8 @@ pecl_packages: []
 
 # Set remi repo depending on the version of rhel
 # See: http://blog.remirepo.net/pages/Config-en
-remi_repo_el5: http://rpms.remirepo.net/enterprise/remi-release-5.rpm
-remi_repo_el6: http://rpms.remirepo.net/enterprise/remi-release-6.rpm
-remi_repo_el7: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+remi_repo_el5: http://mirror.innosol.asia/remi/enterprise/remi-release-5.rpm
+remi_repo_el6: http://mirror.innosol.asia/remi/enterprise/remi-release-6.rpm
+remi_repo_el7: http://mirror.innosol.asia/remi/enterprise/remi-release-7.rpm
 
 install_composer: false
