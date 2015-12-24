@@ -23,9 +23,9 @@ galaxy_info:
   - name: EL
     versions:
       - 7
-  #- name: Ubuntu
-  #  versions:
-  #  - trusty
+  - name: Ubuntu
+    versions:
+      - trusty
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is

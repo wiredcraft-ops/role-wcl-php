@@ -68,7 +68,7 @@
   yum:
     name={{ item }}
     state=present
-  with_items: php_packages
+  with_items: yum_php_packages
 
 - name: Install pecl packages
   shell: pecl install {{ item }}

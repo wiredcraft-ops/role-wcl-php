@@ -1,3 +1,49 @@
 ---
-- fail: msg="Installing php 5.6 to Debian / Ubuntu is not supported at the moment."
-  when: release == "5.6"
+#
+# Custom versions of PHP comes from PPA
+#
+# Select the right PPA depending on the expected release
+- name: apt | Set PPA repo var (php 5.4)
+  set_fact:
+    ppa_repo={{ ppa_54 }}
+  when: 
+    release == '5.4'
+
+- name: apt | Set PPA repo var (php 5.5)
+  set_fact:
+    ppa_repo={{ ppa_55 }}
+  when: 
+    release == '5.5'
+
+- name: apt | Set PPA repo var (php 5.6)
+  set_fact:
+    ppa_repo={{ ppa_56 }}
+  when: 
+    release == '5.6'
+
+# Add the PPA repository to the APT sources
+- name: Ensure PHP repo is installed from PPA
+  apt_repository:
+    repo='{{ ppa_repo }}'
+    state=present
+
+# Install the required packages
+- name: Install required packages
+  apt:
+    name={{ item }}
+    state=present
+    update_cache=yes
+  with_items: apt_php_packages
+
+- name: Install pecl packages
+  shell: pecl install {{ item }}
+  with_items: pecl_packages
+  ignore_errors: yes
+
+- name: Add corresponding config in php.d
+  copy:
+    dest=/etc/php.d/{{ item }}.ini
+    content="extension={{ item }}.so"
+    owner=root
+    group=root
+  with_items: pecl_packages
