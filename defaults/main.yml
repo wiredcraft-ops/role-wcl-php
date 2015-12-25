@@ -4,7 +4,6 @@ release: 5.6
 yum_php_packages:
   - gcc-c++
   - make
-  - php
   - php-devel
   - php-cli
   - php-pear
@@ -12,7 +11,6 @@ yum_php_packages:
 apt_php_packages:
   - gcc-c++
   - make
-  - php
   - php-devel
   - php-cli
   - php-pear
