@@ -73,7 +73,9 @@
     - "{{ php_packages }}"
 
 - name: Install pecl packages
-  shell: pecl install {{ item }}
+  shell: 
+    creates=/root/.pecl_{{ item }}
+    yes | pecl install -a {{ item }} && touch /root/.pecl_{{ item }}
   with_items: pecl_packages
   ignore_errors: yes
 
