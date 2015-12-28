@@ -14,6 +14,7 @@ apt_php_packages:
   - php5-cli
   - php-pear
 
+php_packages: []
 pecl_packages: []
 
 

@@ -33,7 +33,9 @@
     name={{ item }}
     state=present
     update_cache=yes
-  with_items: apt_php_packages
+  with_flattened: 
+    - "{{ apt_php_packages }}"
+    - "{{ php_packages }}"
 
 - name: Install pecl packages
   shell: pecl install {{ item }}
