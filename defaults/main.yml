@@ -9,10 +9,9 @@ yum_php_packages:
   - php-pear
 
 apt_php_packages:
-  - gcc-c++
   - make
-  - php-devel
-  - php-cli
+  - php5-dev
+  - php5-cli
   - php-pear
 
 pecl_packages: []
