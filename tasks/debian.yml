@@ -5,26 +5,26 @@
 # Select the right PPA depending on the expected release
 - name: apt | Set PPA repo var (php 5.4)
   set_fact:
-    ppa_repo={{ ppa_54 }}
+    ppa_php={{ ppa_php_54 }}
   when: 
     release == '5.4'
 
 - name: apt | Set PPA repo var (php 5.5)
   set_fact:
-    ppa_repo={{ ppa_55 }}
+    ppa_php={{ ppa_php_55 }}
   when: 
     release == '5.5'
 
 - name: apt | Set PPA repo var (php 5.6)
   set_fact:
-    ppa_repo={{ ppa_56 }}
+    ppa_php={{ ppa_php_56 }}
   when: 
     release == '5.6'
 
 # Add the PPA repository to the APT sources
 - name: Ensure PHP repo is installed from PPA
   apt_repository:
-    repo='{{ ppa_repo }}'
+    repo='{{ ppa_php }}'
     state=present
 
 # Install the required packages
@@ -42,10 +42,16 @@
   with_items: pecl_packages
   ignore_errors: yes
 
-- name: Add corresponding config in php.d
+- name: Add PHP PECL extension config in mods-available
   copy:
-    dest=/etc/php.d/{{ item }}.ini
+    dest=/etc/php5/mods-available/{{ item }}.ini
     content="extension={{ item }}.so"
     owner=root
     group=root
+  with_items: pecl_packages
+
+- name: Enable PHP PECL extensions
+  shell:
+    creates=/etc/php5/cli/conf.d/20-{{ item }}.ini
+    php5enmod -s ALL {{ item }}
   with_items: pecl_packages
