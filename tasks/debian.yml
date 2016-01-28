@@ -37,23 +37,25 @@
     - "{{ apt_php_packages }}"
     - "{{ php_packages }}"
 
+# NOTE: pecl_packages could include versions like
+#   acpu-4.0.10 --> pecl package/php module is acpu, version is 4.0.10
 - name: Install pecl packages
   shell: 
-    creates=/root/.pecl_{{ item }}
-    yes | pecl install -a {{ item }} && touch /root/.pecl_{{ item }}
+    creates=/root/.pecl_{{ item | regex_replace('-(.*)','') }}
+    yes | pecl install -a {{ item }} && touch /root/.pecl_{{ item | regex_replace('-(.*)','') }}
   with_items: pecl_packages
   ignore_errors: yes
 
 - name: Add PHP PECL extension config in mods-available
   copy:
-    dest=/etc/php5/mods-available/{{ item }}.ini
-    content="extension={{ item }}.so"
+    dest=/etc/php5/mods-available/{{ item | regex_replace('-(.*)','') }}.ini
+    content="extension={{ item | regex_replace('-(.*)','') }}.so"
     owner=root
     group=root
   with_items: pecl_packages
 
 - name: Enable PHP PECL extensions
   shell:
-    creates=/etc/php5/cli/conf.d/20-{{ item }}.ini
-    php5enmod -s ALL {{ item }}
+    creates=/etc/php5/cli/conf.d/20-{{ item | regex_replace('-(.*)','') }}.ini
+    php5enmod -s ALL {{ item | regex_replace('-(.*)','') }}
   with_items: pecl_packages
