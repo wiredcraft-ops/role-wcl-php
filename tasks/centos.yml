@@ -52,6 +52,12 @@
   when: 
     release == '5.6'
 
+- name: yum | Set remi repo php section var
+  set_fact:
+    remi_section=remi-php70
+  when:
+    release == '7.0'
+
 # Enable Section in remi.repo
 - name: Enable Remi repository
   ini_file:
