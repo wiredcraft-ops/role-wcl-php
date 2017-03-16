@@ -30,5 +30,6 @@ ppa_php_54: ppa:ondrej/php5-oldstable
 ppa_php_55: ppa:ondrej/php5
 ppa_php_56: ppa:ondrej/php5-5.6
 ppa_php_70: ppa:ondrej/php-7.0
+ppa_php_71: ppa:ondrej/php-7.1
 
 install_composer: false

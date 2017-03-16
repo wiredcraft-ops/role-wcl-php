@@ -27,6 +27,12 @@
   when:
     release == '7.0'
 
+- name: apt | Set PPA repo var (php 7.1)
+  set_fact:
+    ppa_php={{ ppa_php_70 }}
+  when:
+    release == '7.1'
+
 # Add the PPA repository to the APT sources
 - name: Ensure PHP repo is installed from PPA
   apt_repository:
