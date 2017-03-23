@@ -70,7 +70,7 @@
   yum:
     name={{ item }}
     state=present
-  with_flattened: 
+  with_flattened:
     - "{{ yum_php_packages }}"
     - "{{ php_packages }}"
 
@@ -89,4 +89,4 @@
     content="extension={{ item | regex_replace('-(.*)','') }}.so"
     owner=root
     group=root
-  with_items: pecl_packages
+  with_items: "{{ pecl_packages }}"

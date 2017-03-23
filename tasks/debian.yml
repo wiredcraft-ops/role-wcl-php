@@ -55,7 +55,7 @@
   shell: 
     creates=/root/.pecl_{{ item | regex_replace('-(.*)','') }}
     yes | pecl install -a {{ item }} && touch /root/.pecl_{{ item | regex_replace('-(.*)','') }}
-  with_items: pecl_packages
+  with_items: "{{ pecl_packages }}"
   ignore_errors: yes
 
 - name: Add PHP PECL extension config in mods-available
@@ -64,10 +64,10 @@
     content="extension={{ item | regex_replace('-(.*)','') }}.so"
     owner=root
     group=root
-  with_items: pecl_packages
+  with_items: "{{ pecl_packages }}"
 
 - name: Enable PHP PECL extensions
   shell:
     creates=/etc/php5/cli/conf.d/20-{{ item | regex_replace('-(.*)','') }}.ini
     php5enmod -s ALL {{ item | regex_replace('-(.*)','') }}
-  with_items: pecl_packages
+  with_items: "{{ pecl_packages }}"
