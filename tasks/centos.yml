@@ -80,7 +80,7 @@
   shell: 
     creates=/root/.pecl_{{ item | regex_replace('-(.*)','') }}
     yes | pecl install -a {{ item }} && touch /root/.pecl_{{ item | regex_replace('-(.*)','') }}
-  with_items: pecl_packages
+  with_items: "{{ pecl_packages }}"
   ignore_errors: yes
 
 - name: Add corresponding config in php.d
